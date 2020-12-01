@@ -4,14 +4,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     bc \
     bison \
     ca-certificates \
+    cpio \
     curl \
     flex \
     gcc \
     git \
-    make \
     libssl-dev \
     libc6-dev \
     libncurses-dev \
+    make \
+    python2 \
+    xxd \
     xz-utils \
     zip \
  && rm -rf /var/lib/apt/lists/*

@@ -4,18 +4,21 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     bc \
     bison \
     ca-certificates \
+    cpio \
     curl \
     flex \
     gcc \
     git \
-    make \
     libssl-dev \
     libc6-dev \
     libncurses-dev \
+    make \
+    python2 \
+    xxd \
     xz-utils \
     zip \
  && rm -rf /var/lib/apt/lists/*
- 
+
 RUN git clone https://github.com/arter97/arm64-gcc.git /toolchain_64 --depth=1
 RUN git clone https://github.com/arter97/arm32-gcc.git /toolchain_32 --depth=1
 
