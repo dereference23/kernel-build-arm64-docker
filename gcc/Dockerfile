@@ -4,15 +4,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     bc \
     bison \
     ca-certificates \
+    coreutils \
     cpio \
     curl \
     flex \
     gcc \
     git \
+    lftp \
     libssl-dev \
     libc6-dev \
     libncurses-dev \
     make \
+    openssh-client \
     python2 \
     xxd \
     xz-utils \
