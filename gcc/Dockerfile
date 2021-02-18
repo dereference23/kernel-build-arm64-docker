@@ -4,6 +4,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     bc \
     bison \
     ca-certificates \
+    ccache \
     coreutils \
     cpio \
     curl \
