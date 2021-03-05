@@ -21,7 +21,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     xxd \
     xz-utils \
     zip \
- && rm -rf /var/lib/apt/lists/*
+ && rm -rf /var/lib/apt/lists/* \
+ && ccache --set-config=max_size=1.0G
 
 RUN git clone https://github.com/kdrag0n/proton-clang.git /toolchain --depth=1
 

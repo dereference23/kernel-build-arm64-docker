@@ -22,7 +22,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     xxd \
     xz-utils \
     zip \
- && rm -rf /var/lib/apt/lists/*
+ && rm -rf /var/lib/apt/lists/* \
+ && ccache --set-config=max_size=1.0G
 
 RUN wget -O toolchain_64.tar.xz "https://developer.arm.com/-/media/Files/downloads/gnu-a/10.2-2020.11/binrel/gcc-arm-10.2-2020.11-x86_64-aarch64-none-elf.tar.xz?revision=79f65c42-1a1b-43f2-acb7-a795c8427085&la=en&hash=3BEE623628664E6E1736ABBE7CE5AD76B65B51EA" \
  && tar -xf toolchain_64.tar.xz \
