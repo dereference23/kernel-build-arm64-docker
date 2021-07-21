@@ -24,8 +24,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
  && rm -rf /var/lib/apt/lists/* \
  && ccache --set-config=max_size=1.0G
 
-RUN git clone https://github.com/arter97/arm64-gcc.git /toolchain_64 --depth=1
-RUN git clone https://github.com/arter97/arm32-gcc.git /toolchain_32 --depth=1
+RUN git clone https://github.com/Positron-Foundation/gcc-arm64.git /toolchain_64 --depth=1
+RUN git clone https://github.com/Positron-Foundation/gcc-arm.git /toolchain_32 --depth=1
 
 ENV PATH /toolchain_64/bin:/toolchain_32/bin:$PATH
 ENV ARCH arm64
