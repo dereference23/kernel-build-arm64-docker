@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libncurses-dev \
     make \
     openssh-client \
-    python2 \
+    python3 \
     xxd \
     xz-utils \
     zip \
