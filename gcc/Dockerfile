@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:rolling
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bc \
@@ -10,6 +10,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     flex \
     gcc \
+    gcc-12-aarch64-linux-gnu \
+    gcc-12-arm-linux-gnueabi \
     git \
     lftp \
     libssl-dev \
@@ -21,14 +23,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     xxd \
     xz-utils \
     zip \
- && rm -rf /var/lib/apt/lists/* \
- && ccache --set-config=max_size=1.0G
+ && rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://github.com/Positron-Foundation/gcc-arm64.git /toolchain_64 --depth=1
-RUN git clone https://github.com/Positron-Foundation/gcc-arm.git /toolchain_32 --depth=1
+RUN ccache -M 1G -o compression=true \
+ && update-alternatives --install /usr/bin/aarch64-linux-gnu-gcc aarch64-linux-gnu-gcc /usr/bin/aarch64-linux-gnu-gcc-12 120 \
+ && update-alternatives --install /usr/bin/arm-linux-gnueabi-gcc arm-linux-gnueabi-gcc /usr/bin/arm-linux-gnueabi-gcc-12 120
 
-ENV PATH /toolchain_64/bin:/toolchain_32/bin:$PATH
 ENV ARCH arm64
-ENV CROSS_COMPILE aarch64-elf-
-ENV CROSS_COMPILE_ARM32 arm-eabi-
+ENV CROSS_COMPILE aarch64-linux-gnu-
+ENV CROSS_COMPILE_ARM32 arm-linux-gnueabi-
 ENV KBUILD_BUILD_HOST github.com

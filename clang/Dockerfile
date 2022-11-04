@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:rolling
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bc \
@@ -9,11 +9,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     cpio \
     curl \
     flex \
-    gcc \
     git \
     lftp \
     libssl-dev \
     libc6-dev \
+    libgcc-12-dev \
     libncurses-dev \
     make \
     openssh-client \
@@ -21,10 +21,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     xxd \
     xz-utils \
     zip \
- && rm -rf /var/lib/apt/lists/* \
- && ccache --set-config=max_size=1.0G
+ && rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://github.com/kdrag0n/proton-clang.git /toolchain --depth=1
+RUN ccache -M 1G -o compression=true
+
+RUN mkdir /toolchain && cd /toolchain \
+ && curl https://commondatastorage.googleapis.com/chromium-browser-clang/Linux_x64/clang-llvmorg-16-init-9369-g87a20868-1.tgz | tar xz \
+ && curl https://commondatastorage.googleapis.com/chromium-browser-clang/Linux_x64/llvmobjdump-llvmorg-16-init-9369-g87a20868-1.tgz | tar xz
 
 ENV PATH /toolchain/bin:$PATH
 ENV ARCH arm64
