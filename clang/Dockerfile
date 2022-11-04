@@ -33,4 +33,5 @@ ENV PATH /toolchain/bin:$PATH
 ENV ARCH arm64
 ENV CROSS_COMPILE aarch64-linux-gnu-
 ENV CROSS_COMPILE_ARM32 arm-linux-gnueabi-
+ENV CROSS_COMPILE_COMPAT arm-linux-gnueabi-
 ENV KBUILD_BUILD_HOST github.com
